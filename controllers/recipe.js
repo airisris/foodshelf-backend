@@ -22,7 +22,7 @@ async function getRecipes(category, ingredients) {
 
 async function getRecipe(id) {
   // load the recipe data based on id
-  return await Recipe.findById(id);
+  return await Recipe.findById(id).populate("ingredients");
 }
 
 async function addRecipe(name, instruction, category, ingredients, image) {
