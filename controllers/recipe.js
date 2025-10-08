@@ -9,9 +9,19 @@ async function getRecipes(category, ingredients) {
     filter.category = category;
   }
   if (ingredients) {
-    // match recipes that contain ANY of the user’s supplies
-    filter.ingredients = { $in: ingredients };
+    const ingredientArray = ingredients.split(",");
+    // .map((id) =>
+    //   mongoose.Types.ObjectId.isValid(id)
+    //     ? new mongoose.Types.ObjectId(id)
+    //     : id
+    // )
+    filter.ingredients = { $in: ingredientArray };
   }
+
+  // if (ingredients) {
+  //   // match recipes that contain ANY of the user’s supplies
+  //   filter.ingredients = { $in: ingredients };
+  // }
 
   // apply the filters
   return await Recipe.find(filter)
