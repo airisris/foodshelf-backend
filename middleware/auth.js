@@ -58,11 +58,11 @@ const isAdmin = async (req, res, next) => {
       next();
     } else {
       // trigger error if not admin
-      res.status(400).send({ error: "YOU SHALL NOT PASS" });
+      res.status(400).send({ error: error.message});
     }
   } catch (error) {
     console.log(error);
-    res.status(400).send({ error: "YOU SHALL NOT PASS" });
+    res.status(400).send({ error: error.message });
   }
 };
 

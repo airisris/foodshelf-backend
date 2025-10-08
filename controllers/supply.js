@@ -2,6 +2,12 @@ const axios = require("axios");
 
 const Supply = require("../models/supply");
 
+const getAllSupplies = async () => {
+  return await Supply.find()
+    .populate("ingredient")
+    .sort({ _id: -1 });
+};
+
 const getSupplies = async (user) => {
   return await Supply.find({
     userEmail: user.email,
@@ -52,6 +58,7 @@ const deleteSupply = async (userEmail, ingredient) => {
 };
 
 module.exports = {
+  getAllSupplies,
   getSupplies,
   getSupply,
   addSupply,

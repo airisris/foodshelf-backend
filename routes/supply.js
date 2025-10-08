@@ -3,6 +3,7 @@ const express = require("express");
 const router = express.Router();
 
 const {
+  getAllSupplies,
   getSupplies,
   getSupply,
   addSupply,
@@ -10,6 +11,17 @@ const {
 } = require("../controllers/supply");
 
 const { isValidUser, isAdmin } = require("../middleware/auth");
+
+// get all supplies
+router.get("/all", isAdmin, async (req, res) => {
+  try {
+    const supplies = await getAllSupplies();
+    res.status(200).send(supplies);
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({ message: error.message });
+  }
+});
 
 // get supplies
 router.get("/", isValidUser, async (req, res) => {
