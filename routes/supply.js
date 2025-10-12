@@ -13,7 +13,7 @@ const {
 const { isValidUser, isAdmin } = require("../middleware/auth");
 
 // get all supplies
-router.get("/all", isAdmin, async (req, res) => {
+router.get("/all", async (req, res) => {
   try {
     const supplies = await getAllSupplies();
     res.status(200).send(supplies);

@@ -15,11 +15,12 @@ const {
 // get all ingredients
 router.get("/", async (req, res) => {
   try {
+    const search = req.query.search;
     const category = req.query.category;
-    res.status(200).send(await getIngredients(category));
+    res.status(200).send(await getIngredients(search, category));
   } catch (error) {
     console.log(error);
-    res.status(400).send({ error: error.message});
+    res.status(400).send({ error: error.message });
   }
 });
 
@@ -48,9 +49,7 @@ router.post("/", isAdmin, async (req, res) => {
       });
     }
 
-    res
-      .status(200)
-      .send(await addIngredient(name, category, image));
+    res.status(200).send(await addIngredient(name, category, image));
   } catch (error) {
     console.log(error);
     res.status(400).send({ message: "Unknown error" });
@@ -71,9 +70,7 @@ router.put("/:id", isAdmin, async (req, res) => {
       });
     }
 
-    res
-      .status(200)
-      .send(await updateIngredient(id, name, category, image));
+    res.status(200).send(await updateIngredient(id, name, category, image));
   } catch (error) {
     console.log(error);
     res.status(400).send({ message: "Unknown error" });
