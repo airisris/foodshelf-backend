@@ -19,7 +19,7 @@ app.use(cors());
 async function connectToMongoDB() {
   try {
     // wait for the MangoDB to connect
-    await mongoose.connect("mongodb://localhost:27017/foodshelf");
+    await mongoose.connect(process.env.MONGODB_URL + "/foodshelf");
     console.log("MongoDB is connected");
   } catch (error) {
     console.log(error);
@@ -30,20 +30,20 @@ async function connectToMongoDB() {
 connectToMongoDB();
 
 // setup root route
-app.get("/", (req, res) => {
+app.get("/api", (req, res) => {
   res.send("Happy coding");
 });
 
 // import router
-app.use("/supplies", require("./routes/supply"));
-app.use("/recipes", require("./routes/recipe"));
-app.use("/ingredients", require("./routes/ingredient"));
-app.use("/image", require("./routes/image"));
-app.use("/categories", require("./routes/category"));
-app.use("/users", require("./routes/user"));
+app.use("/api/supplies", require("./routes/supply"));
+app.use("/api/recipes", require("./routes/recipe"));
+app.use("/api/ingredients", require("./routes/ingredient"));
+app.use("/api/image", require("./routes/image"));
+app.use("/api/categories", require("./routes/category"));
+app.use("/api/users", require("./routes/user"));
 
 // set a folder as a static path
-app.use("/uploads", express.static("uploads"));
+app.use("/api/uploads", express.static("uploads"));
 
 // start the express
 app.listen(5123, () => {
