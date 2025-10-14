@@ -1,5 +1,5 @@
 const express = require("express");
-// set up the category router
+// create a express router
 const router = express.Router();
 
 const {
@@ -14,6 +14,7 @@ const {
 router.get("/", async (req, res) => {
   try {
     const categories = await getCategories();
+    
     res.status(200).send(categories);
   } catch (error) {
     console.log(error);
@@ -25,7 +26,9 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const id = req.params.id;
+
     const category = await getCategory(id);
+
     res.status(200).send(category);
   } catch (error) {
     console.log(error);

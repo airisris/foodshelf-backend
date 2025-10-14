@@ -17,6 +17,7 @@ router.get("/", async (req, res) => {
   try {
     const search = req.query.search;
     const category = req.query.category;
+
     res.status(200).send(await getIngredients(search, category));
   } catch (error) {
     console.log(error);
@@ -28,6 +29,7 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const id = req.params.id;
+
     res.status(200).send(await getIngredient(id));
   } catch (error) {
     console.log(error);
@@ -64,6 +66,7 @@ router.put("/:id", isAdmin, async (req, res) => {
     const category = req.body.category;
     const image = req.body.image;
 
+    // error checking
     if (!name || !category || !image) {
       return res.status(400).send({
         message: "All the fields are required",
@@ -81,6 +84,7 @@ router.put("/:id", isAdmin, async (req, res) => {
 router.delete("/:id", isAdmin, async (req, res) => {
   try {
     const id = req.params.id;
+    
     await deleteIngredient(id);
 
     res.status(200).send({

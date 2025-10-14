@@ -7,10 +7,7 @@ const isValidUser = async (req, res, next) => {
   try {
     const { authorization = "" } = req.headers;
     // extract the token from the authorization header
-    // method 1: .replace
     const token = authorization.replace("Bearer ", "");
-    // method 2: .split
-    // const token = authorization.split(" ")[1];
 
     // verify the token
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
@@ -39,10 +36,7 @@ const isAdmin = async (req, res, next) => {
   try {
     const { authorization = "" } = req.headers;
     // extract the token from the authorization header
-    // method 1: .replace
     const token = authorization.replace("Bearer ", "");
-    // method 2: .split
-    // const token = authorization.split(" ")[1];
 
     // verify the token
     const decoded = jwt.verify(token, process.env.JWT_SECRET);

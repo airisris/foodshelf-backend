@@ -15,8 +15,11 @@ const {
 // get all recipes
 router.get("/", async (req, res) => {
   try {
+    console.log("---");
     const category = req.query.category;
     const ingredients = req.query.ingredients;
+    console.log(category, ingredients);
+
     res.status(200).send(await getRecipes(category, ingredients));
   } catch (error) {
     console.log(error);
@@ -28,6 +31,7 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const id = req.params.id;
+
     res.status(200).send(await getRecipe(id));
   } catch (error) {
     console.log(error);
@@ -70,6 +74,7 @@ router.put("/:id", isAdmin, async (req, res) => {
     const ingredients = req.body.ingredients;
     const image = req.body.image;
 
+    // error checking
     if (!name || !instruction || !category || !ingredients || !image) {
       return res.status(400).send({
         message: "All the fields are required",
@@ -91,6 +96,7 @@ router.put("/:id", isAdmin, async (req, res) => {
 router.delete("/:id", isAdmin, async (req, res) => {
   try {
     const id = req.params.id;
+    
     await deleteRecipe(id);
 
     res.status(200).send({

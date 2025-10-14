@@ -1,5 +1,5 @@
 const express = require("express");
-// set up the supply router
+// create a express router
 const router = express.Router();
 
 const {
@@ -10,12 +10,13 @@ const {
   deleteSupply,
 } = require("../controllers/supply");
 
-const { isValidUser, isAdmin } = require("../middleware/auth");
+const { isValidUser } = require("../middleware/auth");
 
 // get all supplies
 router.get("/all", async (req, res) => {
   try {
     const supplies = await getAllSupplies();
+
     res.status(200).send(supplies);
   } catch (error) {
     console.log(error);
@@ -28,6 +29,7 @@ router.get("/", isValidUser, async (req, res) => {
   try {
     const user = req.user;
     const supplies = await getSupplies(user);
+
     res.status(200).send(supplies);
   } catch (error) {
     console.log(error);
@@ -40,6 +42,7 @@ router.get("/:id", async (req, res) => {
   try {
     const id = req.params.id;
     const supply = await getSupply(id);
+
     res.status(200).send(supply);
   } catch (error) {
     console.log(error);
@@ -69,6 +72,7 @@ router.delete("/", async (req, res) => {
     const ingredient = req.body.ingredient;
 
     await deleteSupply(userEmail, ingredient);
+
     res.status(200).send({
       message: `Supply has been deleted`,
     });

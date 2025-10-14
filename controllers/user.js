@@ -1,6 +1,7 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
+// import the User model
 const User = require("../models/user");
 
 const getUserByEmail = async (email) => {
@@ -8,7 +9,7 @@ const getUserByEmail = async (email) => {
 };
 
 const login = async (email, password) => {
-  // check if the email provided is in the system
+  // check if the email provided is already in the system
   const user = await getUserByEmail(email);
   // if not exists, throw an error
   if (!user) {

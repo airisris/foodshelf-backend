@@ -1,4 +1,5 @@
 const express = require("express");
+// create a express router
 const router = express.Router();
 
 const { login, signup } = require("../controllers/user");
@@ -8,7 +9,9 @@ router.post("/login", async (req, res) => {
   try {
     const email = req.body.email;
     const password = req.body.password;
+
     const user = await login(email, password);
+
     res.status(200).send(user);
   } catch (error) {
     console.log(error);
@@ -22,7 +25,9 @@ router.post("/signup", async (req, res) => {
     const name = req.body.name;
     const email = req.body.email;
     const password = req.body.password;
+
     const user = await signup(name, email, password);
+
     res.status(200).send(user);
   } catch (error) {
     console.log(error);

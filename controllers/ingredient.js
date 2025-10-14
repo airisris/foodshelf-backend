@@ -1,10 +1,11 @@
-// import the Movie model
+// import the Ingredient model
 const Ingredient = require("../models/ingredient");
 
 async function getIngredients(search, category) {
   // create an empty container for filter
   let filter = {};
-  // if category exists, then only add it into the filter container
+
+  // if exists, add it into the filter container
   if (search) {
     // search by "search" that is passed in, and is case-insensetive
     filter.name = { $regex: search, $options: "i" };
@@ -35,6 +36,7 @@ async function addIngredient(name, category, image) {
 }
 
 async function updateIngredient(id, name, category, image) {
+  // update the ingredient
   return await Ingredient.findByIdAndUpdate(
     id,
     {

@@ -1,9 +1,10 @@
-// import the Movie model
+// import the Recipe model
 const Recipe = require("../models/recipe");
 
 async function getRecipes(category, ingredients) {
   // create an empty container for filter
   let filter = {};
+
   // if exists, then only add it into the filter container
   if (category) {
     filter.category = category;
@@ -48,6 +49,7 @@ async function updateRecipe(
   ingredients,
   image
 ) {
+  // update the recipe
   return await Recipe.findByIdAndUpdate(
     id,
     {

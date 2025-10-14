@@ -21,8 +21,5 @@ const supplySchema = new Schema({
   ],
 });
 
-// create a Modal from the schema
 const Supply = model("Supply", supplySchema);
-
-// export the modal
 module.exports = Supply;

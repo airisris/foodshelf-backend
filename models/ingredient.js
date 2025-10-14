@@ -14,8 +14,7 @@ const ingredientSchema = new Schema({
   },
   category: {
     type: String,
-    enum: ["Fruit", "Meat", "Vegetable", "Seafood", "Dairy Product", "Carb & Grain", "Other"],
-    // default: "Fruit", // will change
+    enum: ["Fruit", "Meat", "Vegetable", "Seafood", "Dairy Product", "Carb and Grain", "Other"],
     required: true,
   },
   image: {

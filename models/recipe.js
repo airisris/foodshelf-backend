@@ -24,7 +24,7 @@ const recipeSchema = new Schema({
     ref: "Category",
     required: true,
   },
-  // linkage between the supply and ingredient
+  // linkage between the recipe and ingredient
   ingredients: [
     {
       type: Schema.Types.ObjectId,
@@ -38,7 +38,7 @@ const recipeSchema = new Schema({
   },
 });
 
-// create a Modal from the schema
+// create a modal from the schema
 const Recipe = model("Recipe", recipeSchema);
 
 // export the modal
